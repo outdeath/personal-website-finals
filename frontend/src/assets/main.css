@@ -1,0 +1,468 @@
+/* ─── Aero Frutiger Design Tokens ────────────────────────────────── */
+:root {
+  /* Core palette */
+  --blue: #0078D7;
+  --blue-light: #32a9ff;
+  --blue-dark: #005fa3;
+  --green: #83B313;
+  --green-light: #a8db1b;
+  --green-dark: #5e820d;
+  --white: #ffffff;
+  --off-white: #f0f8ff;
+
+  /* Backgrounds */
+  --bg-sky: #d6eeff;
+  --bg-body: #e8f4fd;
+  --bg-card: rgba(255, 255, 255, 0.58);
+  --bg-card-hover: rgba(255, 255, 255, 0.82);
+  --bg-nav: rgba(220, 240, 255, 0.72);
+
+  /* Text */
+  --text-primary: #003a6b;
+  --text-secondary: #2e6896;
+  --text-muted: #6a99bb;
+
+  /* Borders */
+  --border: rgba(0, 120, 215, 0.18);
+  --border-accent: rgba(0, 120, 215, 0.45);
+  --border-glass: rgba(255, 255, 255, 0.7);
+
+  /* Gradients */
+  --gradient-blue: linear-gradient(135deg, #0078D7 0%, #32a9ff 100%);
+  --gradient-green: linear-gradient(135deg, #83B313 0%, #a8db1b 100%);
+  --gradient-sky: linear-gradient(180deg, #b8e0ff 0%, #e8f4fd 60%, #d4edaa 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(200, 232, 255, 0.55) 100%);
+
+  /* Shadows / glow */
+  --shadow-card: 0 4px 24px rgba(0, 120, 215, 0.12), 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-glass: 0 8px 32px rgba(0, 120, 215, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-glow-blue: 0 0 40px rgba(0, 120, 215, 0.35);
+  --shadow-glow-green: 0 0 40px rgba(131, 179, 19, 0.35);
+  --shadow-btn: 0 4px 16px rgba(0, 120, 215, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --font: 'Segoe UI', 'Frutiger', 'Inter', system-ui, sans-serif;
+  --transition: 0.2s ease;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-sky);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: var(--radius-full);
+}
+
+/* ─── Utility ────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.section-subtitle {
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 52px;
+}
+
+/* ─── Gradient text ──────────────────────────────────────────────── */
+.gradient-text {
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-green {
+  background: var(--gradient-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glassmorphism Card ─────────────────────────────────────────── */
+.card {
+  background: var(--gradient-glass);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-glass);
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 120, 215, 0.4);
+  box-shadow: 0 12px 40px rgba(0, 120, 215, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 30px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.btn-primary {
+  background: var(--gradient-blue);
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 120, 215, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.btn-green {
+  background: var(--gradient-green);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(131, 179, 19, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(131, 179, 19, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
+  backdrop-filter: blur(8px);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 120, 215, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ─── Form Elements ──────────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.form-input,
+.form-textarea {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1.5px solid rgba(0, 120, 215, 0.25);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: none;
+  backdrop-filter: blur(6px);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.15);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Tag / Badge ────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(0, 120, 215, 0.1), rgba(131, 179, 19, 0.08));
+  color: var(--blue-dark);
+  border: 1px solid rgba(0, 120, 215, 0.22);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 120, 215, 0.2), transparent);
+}
+
+/* ─── Section backgrounds ────────────────────────────────────────── */
+.section-light {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.section-sky {
+  background: linear-gradient(180deg, var(--bg-sky) 0%, var(--bg-body) 100%);
+}
+
+/* ─── Animations ─────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-12px) scale(1.03);
+  }
+}
+
+@keyframes swash {
+  from {
+    stroke-dashoffset: 1200;
+    opacity: 0;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.65s ease both;
+}
+
+/* ─── Navbar ─────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 16px rgba(0, 120, 215, 0.1);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-size: 1.15rem;
+  font-weight: 900;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--blue);
+}
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  padding: 4px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+@media (max-width: 680px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(220, 240, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 8px 0;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 0.95rem;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────── */
+.footer {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+/* ─── Responsive helpers ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .section-subtitle {
+    margin-bottom: 36px;
+  }
+}

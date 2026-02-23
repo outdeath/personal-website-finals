@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "api/index.ts",
+            "use": "@vercel/node",
+            "config": {
+                "includeFiles": [
+                    "src/**",
+                    "dist/**"
+                ]
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "api/index.ts"
+        }
+    ],
+    "env": {
+        "SUPABASE_URL": "@supabase_url",
+        "SUPABASE_KEY": "@supabase_key",
+        "FRONTEND_URL": "@frontend_url"
+    }
+}
