@@ -13,7 +13,7 @@ async function createNestApp(): Promise<express.Express> {
     const app = await NestFactory.create(AppModule, new (await import('@nestjs/platform-express')).ExpressAdapter(expressApp));
 
     app.enableCors({
-        origin: process.env.FRONTEND_URL || '*',
+        origin: true, // This allows all origins which is safer for debugging deployment issues
         methods: 'GET,POST',
         allowedHeaders: 'Content-Type, Authorization',
     });
