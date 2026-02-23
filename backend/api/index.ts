@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ValidationPipe } from '@nestjs/common';
@@ -31,8 +32,13 @@ async function createNestApp(): Promise<express.Express> {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-    if (!cachedApp) {
-        cachedApp = await createNestApp();
+    try {
+        if (!cachedApp) {
+            cachedApp = await createNestApp();
+        }
+        cachedApp(req as any, res as any);
+    } catch (error) {
+        console.error('❌ Serverless Function Error:', error);
+        res.status(500).send(`Internal Server Error: ${error.message}`);
     }
-    cachedApp(req as any, res as any);
 }
