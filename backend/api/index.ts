@@ -3,12 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '../src/app.module';
 import { ValidationPipe } from '@nestjs/common';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import * as express from 'express';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const express = require('express');
 
 // Cache the Nest app across warm Lambda invocations
-let cachedApp: express.Express | null = null;
+let cachedApp: ReturnType<typeof express> | null = null;
 
-async function createNestApp(): Promise<express.Express> {
+async function createNestApp(): Promise<ReturnType<typeof express>> {
     const expressApp = express();
 
     const app = await NestFactory.create(AppModule, new (await import('@nestjs/platform-express')).ExpressAdapter(expressApp));
